@@ -1,1 +1,1 @@
-console.log("iniciando product");
+console.log("Iniciando Product");
