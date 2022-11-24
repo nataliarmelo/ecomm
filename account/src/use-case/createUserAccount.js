@@ -9,9 +9,9 @@ export function createUserUseCase(nome, email, senha){
          name: nome,
          email: email,
          password: senha,
-         createdDate: new Date()
+         createdDate: new Date().toISOString().substring(0,10)
     }
-
+    
     accounts.push(user)
     return user
 
