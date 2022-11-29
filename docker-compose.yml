@@ -1,0 +1,9 @@
+version: '3'
+services:
+  product:
+    image: pagonxt/product
+    build: product
+
+  product:
+    image: pagonxt/account
+    build: account
