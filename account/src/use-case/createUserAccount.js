@@ -1,24 +1,18 @@
-let accounts = []
-
+const accounts = [];
 
 export function createUserUseCase(nome, email, senha){
-    const userId = accounts.length +1;
+    const id = accounts.length +1;
+    const createdDate = new Date().toISOString().substring(0,10);
 
     const user = {
-         id: userId ,
-         name: nome,
-         email: email,
-         password: senha,
-         createdDate: new Date().toISOString().substring(0,10)
-    }
+         id,
+         nome,
+         email,
+         senha,
+         createdDate
+    };
     
-    accounts.push(user)
+    accounts.push(user);
     return user
 
 }
-
-createUserUseCase("Natalia Melo", "natalia@email.com", "senhaDaNatalia");
-createUserUseCase("Maria Lima", "maria@email.com", "senhaDaMaria");
-createUserUseCase("Jose Carlos", "jose@email.com", "senhaDoJose");
-
-console.log("contas:", accounts);

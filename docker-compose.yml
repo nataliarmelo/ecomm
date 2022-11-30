@@ -4,6 +4,8 @@ services:
     image: pagonxt/product
     build: product
 
-  product:
+  account:
     image: pagonxt/account
     build: account
+    volumes:
+     - ./account:/app
