@@ -11,8 +11,9 @@
   "author": "Natalia Melo",
   "license": "MIT",
   "dependencies": {
-    "mongo": "^0.1.0",
-    "mongodb": "^4.12.1",
+    "mongodb": "^4.12.1"
+  },
+  "devDependencies": {
     "nodemon": "^2.0.20"
   }
 }

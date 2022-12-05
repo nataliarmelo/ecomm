@@ -1,6 +1,6 @@
 import { MongoClient } from 'mongodb';
 
-async function databaseConnect(){
+async function getUsersCollection(){
     //como conectar no mongo por URL: mongodb://usuario:senha@host:porta/database 
     // usuario e senha o mesmo .env - o nome do container sera o host - porta será o mongo - o nome do bd será o mesmo do .env
 
@@ -15,6 +15,6 @@ async function databaseConnect(){
 
 // realizar o export da função para conseguir usar dentro do databaseConnect
 export async function saveAccount(accounts){
-    const collection = await databaseConnect();// função criada para acessar a collection dentro do db.
+    const collection = await getUsersCollection();// função criada para acessar a collection dentro do db.
     await collection.insertOne(accounts); //insertOne é promise = async/await
 }
