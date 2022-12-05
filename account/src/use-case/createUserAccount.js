@@ -1,24 +1,16 @@
-let accounts = []
-
+import { saveAccount } from '../../repositories/accountRepository.js'; //importar a função saveAccount de Repositories.
 
 export function createUserUseCase(nome, email, senha){
-    const userId = accounts.length +1;
+    
+    const createdDate = new Date().toISOString().substring(0,10);
 
     const user = {
-         id: userId ,
-         name: nome,
-         email: email,
-         password: senha,
-         createdDate: new Date().toISOString().substring(0,10)
-    }
+         nome,
+         email,
+         senha,
+         createdDate
+    };
     
-    accounts.push(user)
-    return user
-
+    saveAccount(user);
+    return user;
 }
-
-createUserUseCase("Natalia Melo", "natalia@email.com", "senhaDaNatalia");
-createUserUseCase("Maria Lima", "maria@email.com", "senhaDaMaria");
-createUserUseCase("Jose Carlos", "jose@email.com", "senhaDoJose");
-
-console.log("contas:", accounts);

@@ -3,7 +3,20 @@ services:
   product:
     image: pagonxt/product
     build: product
-
-  product:
+    
+  account:
     image: pagonxt/account
     build: account
+    #volumes:
+    # - ./account:/app
+  
+  account-database:
+    image: mongo
+    container_name: account-database
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=mongouser
+      - MONGO_INITDB_ROOT_PASSWORD=mongopass
+      - MONGO_INITDB_DATABASE=accounts
+    ports:
+      - 27017:27017
+    #env_file: /account/.env
