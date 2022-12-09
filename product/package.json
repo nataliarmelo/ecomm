@@ -5,7 +5,7 @@
   "main": "src/main.js",
   "type": "module",
   "scripts": {
-    "test": "node test/createProductUseCase.test.js",
+    "test": "node test/listProducts.test.js",
     "start": "nodemon src/main.js"
   },
   "author": "Natalia Melo",
