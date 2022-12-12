@@ -3,14 +3,14 @@
   "version": "1.0.0",
   "description": "",
   "main": "src/main.js",
+  "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "node test/listProducts.test.js",
     "start": "nodemon src/main.js"
   },
-  "author": "",
-  "license": "ISC",
-  "dependencies": {
+  "author": "Natalia Melo",
+  "license": "MIT",
+  "devDependencies": {
     "nodemon": "^2.0.20"
   }
 }
-

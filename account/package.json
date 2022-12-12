@@ -5,14 +5,15 @@
   "main": "createUserAccount.js",
   "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "",
     "start": "nodemon test/createUserAccount.test.js"
   },
   "author": "Natalia Melo",
   "license": "MIT",
   "dependencies": {
-    "mongo": "^0.1.0",
-    "mongodb": "^4.12.1",
+    "mongodb": "^4.12.1"
+  },
+  "devDependencies": {
     "nodemon": "^2.0.20"
   }
 }
