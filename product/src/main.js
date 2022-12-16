@@ -1,2 +1,10 @@
+import express from 'express'
+import { routes } from './routes.js';
 
-console.log("Iniciando Product");
+const app = express();
+app.use(express.json());
+app.use(routes);
+
+app.listen(3000, function(){
+    console.log('Product server is running!');
+})
