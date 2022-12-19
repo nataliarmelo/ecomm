@@ -7,8 +7,10 @@ services:
   account:
     image: pagonxt/account
     build: account
-    #volumes:
-    # - ./account:/app
+    volumes:
+     - ./account:/app
+    port:
+     - 3000:3000 
   
   account-database:
     image: mongo

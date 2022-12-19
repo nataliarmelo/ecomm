@@ -6,11 +6,14 @@
   "type": "module",
   "scripts": {
     "test": "",
+    "start:dev": " nodemon src/use-case/main.js",
     "start": "nodemon test/createUserAccount.test.js"
   },
   "author": "Natalia Melo",
   "license": "MIT",
   "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "express": "^4.18.2",
     "mongodb": "^4.12.1"
   },
   "devDependencies": {
