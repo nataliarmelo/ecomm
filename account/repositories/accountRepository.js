@@ -17,5 +17,4 @@ async function getUsersCollection(){
 export async function saveAccount(accounts){
     const collection = await getUsersCollection();// função criada para acessar a collection dentro do db.
     await collection.insertOne(accounts); //insertOne é promise = async/await
-    await collection.close(); // para não travar no terminal.
 }

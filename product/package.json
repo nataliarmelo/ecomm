@@ -6,7 +6,8 @@
   "type": "module",
   "scripts": {
     "test": "node test/listProducts.test.js",
-    "start": "nodemon src/main.js"
+    "start:dev": "nodemon src/main.js",
+    "start": "node src/main.js"
   },
   "author": "Natalia Melo",
   "license": "MIT",
