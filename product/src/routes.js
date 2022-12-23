@@ -14,7 +14,9 @@ routes.get('/products', async function(req, res){
     });
 
 
-});routes.post('/products', function(req, res){
+});
+
+routes.post('/products', function(req, res){
     const product = req.body;
     createProductUseCase(product)
     .then(datas => {

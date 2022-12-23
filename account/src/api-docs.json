@@ -1,0 +1,72 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Ecomm API - Accounts",
+    "description": "API developed for handling accounts.",
+    "version": "1.0.0",
+    "termsOfService": "http://localhost:3001",
+    "contact": {
+      "name": "Suport",
+      "email": "contatosac@ecomm.com"
+    },
+    "license": {
+      "name": "License GPLv3",
+      "url": "http://www.gnu.org/licenses/gpl-3.0.html"
+    }
+  },
+  "servers": [
+    {
+      "url": "http://localhost:3001",
+      "description": "Accounts API"
+    }
+  ],
+  "paths": {
+    "/accounts": {
+      "post": {
+        "summary": "account registration",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Accounts"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Account created!",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Accounts"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Error creating account"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Accounts": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          },
+          "password": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}
