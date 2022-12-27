@@ -1,0 +1,116 @@
+{
+    "openapi": "3.0.3",
+    "info": {
+      "title": "Ecomm API - Products",
+      "description": "Restful API that deals with Products.",
+      "version": "1.0.0",
+      "termsOfService": "http://localhost:3000",
+      "contact": {
+        "name": "Suport",
+        "url": "http://localhost:3000/contact",
+        "email": "contatosac@ecomm.com"
+      },
+      "license": {
+        "name": "License GPLv3",
+        "url": "http://www.gnu.org/licenses/gpl-3.0.html"
+      }
+    },
+    "servers": [
+      {
+        "url": "http://localhost:3000",
+        "description": "Products API"
+      }
+    ],
+    "paths": {
+      "/products": {
+        "post": {
+          "summary": "product registration",
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/productData"
+                }
+              }
+            }
+          },
+          "responses": {
+            "201": {
+              "description": "Product created!",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/productData"
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "Error creating product"
+            }
+          }
+        }
+      }
+    },
+    "components": {
+      "schemas": {
+        "productData": {
+          "type": "object",
+          "properties": {
+            "userId": {
+              "type": "string"
+            },
+            "name": {
+              "type": "string"
+            },
+            "price": {
+              "type": "number"
+            },
+            "quantify": {
+              "type": "integer"
+            },
+            "description": {
+              "type": "string"
+            },
+            "category": {
+              "type": "string"
+            },
+            "characteristics": {
+              "$ref": "#/components/schemas/characteristcsData"
+            },
+            "images": {
+              "$ref": "#/components/schemas/imagesData"
+            }
+          }
+        },
+        "characteristcsData": {
+          "type": "array",
+          "items": {
+            "type": "object"
+          },
+          "properties": {
+            "name": {
+              "type": "string"
+            },
+            "description": {
+              "type": "array"
+            }
+          }
+        },
+        "imagesData": {
+          "type": "array",
+          "items": {
+            "type": "object"
+          },
+          "properties": {
+            "url": {
+              "type": "string"
+            },
+            "description": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    }
+  }

@@ -1,6 +1,6 @@
 import { findProducts } from "../repositories/productRepository.js";
 
-export function listProducts(){
-    const products = findProducts()
+export async function listProducts(){
+    const products = await findProducts()
     return products
 }

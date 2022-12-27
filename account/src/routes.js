@@ -1,9 +1,9 @@
 import { Router } from 'express';
-import { createUserUseCase } from './createUserAccount.js';
+import { createUserUseCase } from './use-case/createUserAccount.js';
 
 export const routes = new Router();
 
-routes.post('/accounts', function(req, res){
+routes.post('/accounts',async function(req, res){
     const { name, email, password } = req.body;
     createUserUseCase(name, email, password)
     .then(createdAccount => {

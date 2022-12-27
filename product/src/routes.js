@@ -4,6 +4,18 @@ import { listProducts } from './use-case/listProducts.js'
 
 export const routes = new Router();
 
+routes.get('/products', async function(req, res){
+    listProducts()
+        .then(products => {
+            res.json(products)
+    })
+        .catch(error => {
+            res.status(400).json({ status: 'error', message: error.message })
+    });
+
+
+});
+
 routes.post('/products', function(req, res){
     const product = req.body;
     createProductUseCase(product)
@@ -12,11 +24,5 @@ routes.post('/products', function(req, res){
     })
     .catch(error => {
         res.status(400).json({ status: 'error', message: error.message })
-    });
-});
-
-routes.get('/products', function(req, res){
-    listProducts().then(products => {
-        res.json(products)
     });
 });
