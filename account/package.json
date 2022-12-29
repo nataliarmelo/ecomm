@@ -5,7 +5,7 @@
   "main": "createUserAccount.js",
   "type": "module",
   "scripts": {
-    "test": "",
+    "test": "node test/createUserAccount.test.js",
     "start:dev": " nodemon src/main.js",
     "start": "node src/main.js"
   },

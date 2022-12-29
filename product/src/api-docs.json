@@ -1,107 +1,157 @@
 {
-    "openapi": "3.0.3",
-    "info": {
-      "title": "Ecomm API - Products",
-      "description": "Restful API that deals with Products.",
-      "version": "1.0.0",
-      "termsOfService": "http://localhost:3000",
-      "contact": {
-        "name": "Suport",
-        "url": "http://localhost:3000/contact",
-        "email": "contatosac@ecomm.com"
-      },
-      "license": {
-        "name": "License GPLv3",
-        "url": "http://www.gnu.org/licenses/gpl-3.0.html"
-      }
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Ecomm API - Products",
+    "description": "Restful API that deals with Products.",
+    "version": "1.0.0",
+    "termsOfService": "http://localhost:3000",
+    "contact": {
+      "name": "Suport",
+      "url": "http://localhost:3000/contact",
+      "email": "contatosac@ecomm.com"
     },
-    "servers": [
-      {
-        "url": "http://localhost:3000",
-        "description": "Products API"
-      }
-    ],
-    "paths": {
-      "/products": {
-        "post": {
-          "summary": "product registration",
-          "requestBody": {
+    "license": {
+      "name": "License GPLv3",
+      "url": "http://www.gnu.org/licenses/gpl-3.0.html"
+    }
+  },
+  "servers": [
+    {
+      "url": "http://localhost:3000",
+      "description": "Products API"
+    }
+  ],
+  "paths": {
+    "/products": {
+      "post": {
+        "summary": "Product registre",
+        "description": "Responsible for registering a new product.",
+        "tags": [
+          "Products"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/productData"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Product created!",
             "content": {
               "application/json": {
                 "schema": {
+                  "type": "object",
+                  "$ref": "#/components/schemas/productData"
+                },
+                "examples": {
+                  "products": {
+                    "value": {
+                      "productId": "74034ae7-7d52-4644-9433-2e6e3ca1601a",
+                      "createdDate": "2022-12-29",
+                      "product": {
+                        "name": "iPhone 13 Pro Max",
+                        "price": 950,
+                        "quantify": 3,
+                        "description": "Ceramic Shield front.",
+                        "category": "Smartphone",
+                        "characteristics": [
+                          {
+                            "name": "Color",
+                            "description": "Gold"
+                          }
+                        ],
+                        "images": [
+                          {
+                            "url": "http://image.com",
+                            "descricao": "An image of a smartphone in gold color"
+                          }
+                        ]
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Error creating product",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
                   "$ref": "#/components/schemas/productData"
                 }
               }
             }
+          }
+        }
+      },
+      "get": {
+        "summary": "List products",
+        "description": "Route for list products.",
+        "tags": [
+          "Products"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
           },
-          "responses": {
-            "201": {
-              "description": "Product created!",
-              "content": {
-                "application/json": {
-                  "schema": {
-                    "$ref": "#/components/schemas/productData"
-                  }
-                }
-              }
-            },
-            "400": {
-              "description": "Error creating product"
-            }
+          "500": {
+            "description": "Internal Server Error"
           }
         }
       }
-    },
-    "components": {
-      "schemas": {
-        "productData": {
+    }
+  },
+  "components": {
+    "schemas": {
+      "productData": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "price": {
+            "type": "number"
+          },
+          "quantify": {
+            "type": "integer"
+          },
+          "description": {
+            "type": "string"
+          },
+          "category": {
+            "type": "string"
+          },
+          "characteristics": {
+            "$ref": "#/components/schemas/characteristcsData"
+          },
+          "images": {
+            "$ref": "#/components/schemas/imagesData"
+          }
+        }
+      },
+      "characteristcsData": {
+        "type": "array",
+        "items": {
+          "properties": {
+            "name": {
+              "type": "string"
+            },
+            "description": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "imagesData": {
+        "type": "array",
+        "items": {
           "type": "object",
-          "properties": {
-            "userId": {
-              "type": "string"
-            },
-            "name": {
-              "type": "string"
-            },
-            "price": {
-              "type": "number"
-            },
-            "quantify": {
-              "type": "integer"
-            },
-            "description": {
-              "type": "string"
-            },
-            "category": {
-              "type": "string"
-            },
-            "characteristics": {
-              "$ref": "#/components/schemas/characteristcsData"
-            },
-            "images": {
-              "$ref": "#/components/schemas/imagesData"
-            }
-          }
-        },
-        "characteristcsData": {
-          "type": "array",
-          "items": {
-            "type": "object"
-          },
-          "properties": {
-            "name": {
-              "type": "string"
-            },
-            "description": {
-              "type": "array"
-            }
-          }
-        },
-        "imagesData": {
-          "type": "array",
-          "items": {
-            "type": "object"
-          },
           "properties": {
             "url": {
               "type": "string"
@@ -114,3 +164,4 @@
       }
     }
   }
+}
