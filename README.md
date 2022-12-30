@@ -46,4 +46,34 @@
 </ol>
 </p>
 
+<h2>:calendar: Semana 5 </h2>
+<p>
+:book: Objetivos:
 
+<ol>
+<li>Criando usuário via POST</li>
+<li>Criando produto via POST</li>
+<li>Listando produtoS via GET</li>
+<li>Criptografando a senha do usuário</li>
+</ol>
+</p>
+
+<h2>:calendar: Semana 6 </h2>
+<p>
+:book: Objetivos:
+
+<ol>
+<li>Documentando a API</li>
+<li>Expondo a documentação</li>
+</ol>
+</p>
+
+<h2>:calendar: Semana 7 </h2>
+<p>
+:book: Objetivos:
+
+<ol>
+<li>...</li>
+<li>...</li>
+</ol>
+</p>
