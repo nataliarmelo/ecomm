@@ -8,7 +8,7 @@ services:
       - ./product:/app
     ports:
       - 3000:3000
-    
+
   account:
     image: pagonxt/account
     build: account
@@ -27,3 +27,14 @@ services:
       - MONGO_INITDB_DATABASE=accounts
     ports:
       - 27017:27017
+
+  product-database:
+    image: mysql
+    container_name: product-database
+    environment:
+      - MYSQL_ALLOW_ROOT_PASSWORD=true
+      - MYSQL_DATABASE=products
+      - MYSQL_USER=mysqluser
+      - MYSQL_PASSWORD=mysqlpass
+    ports: 
+      - 3306:3306
