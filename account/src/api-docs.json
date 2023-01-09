@@ -23,7 +23,11 @@
   "paths": {
     "/accounts": {
       "post": {
-        "summary": "account registration",
+        "summary": "Account registration",
+        "description": "Route for register accounts.",
+        "tags": [
+          "Accounts"
+        ],
         "requestBody": {
           "content": {
             "application/json": {
@@ -39,13 +43,33 @@
             "content": {
               "application/json": {
                 "schema": {
+                  "type": "object",
                   "$ref": "#/components/schemas/Accounts"
+                },
+                "examples": {
+                  "accounts": {
+                    "value": {
+                      "id": "6548wff6a-58741fe",
+                      "nome": "João",
+                      "email": "joao@mail.com",
+                      "password": "*******",
+                      "createdDate": "2022-12-29"
+                    }
+                  }
                 }
               }
             }
           },
           "400": {
-            "description": "Error creating account"
+            "description": "Error creating product",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "$ref": "#/components/schemas/Accounts"
+                }
+              }
+            }
           }
         }
       }
@@ -56,6 +80,9 @@
       "Accounts": {
         "type": "object",
         "properties": {
+          "id": {
+            "type": "string"
+          },
           "name": {
             "type": "string"
           },
@@ -63,6 +90,9 @@
             "type": "string"
           },
           "password": {
+            "type": "string"
+          },
+          "createdDate": {
             "type": "string"
           }
         }
