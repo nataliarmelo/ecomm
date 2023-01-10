@@ -73,7 +73,16 @@
 :book: Objetivos:
 
 <ol>
-<li>...</li>
-<li>...</li>
+<li>Persistindo produtos</li>
+<li>Listando Produtos</li>
+</ol>
+</p>
+
+<h2>:calendar: Semana 8 </h2>
+<p>
+:book: Objetivos:
+
+<ol>
+<li>Testando os endpoints das APIs</li>
 </ol>
 </p>

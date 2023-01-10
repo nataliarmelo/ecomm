@@ -52,7 +52,6 @@
                       "id": "6548wff6a-58741fe",
                       "nome": "João",
                       "email": "joao@mail.com",
-                      "password": "*******",
                       "createdDate": "2022-12-29"
                     }
                   }
@@ -61,12 +60,12 @@
             }
           },
           "400": {
-            "description": "Error creating product",
+            "description": "Error creating account",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "object",
-                  "$ref": "#/components/schemas/Accounts"
+                  "$ref": "#/components/schemas/AccountError"
                 }
               }
             }
@@ -93,6 +92,17 @@
             "type": "string"
           },
           "createdDate": {
+            "type": "string"
+          }
+        }
+      },
+      "AccountError": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "email": {
             "type": "string"
           }
         }
