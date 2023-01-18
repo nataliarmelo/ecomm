@@ -1,20 +1,20 @@
-import { MongoClient } from 'mongodb';
+import { MongoClient } from "mongodb";
 
-async function getUsersCollection(){
-    //como conectar no mongo por URL: mongodb://usuario:senha@host:porta/database 
-    // usuario e senha o mesmo .env - o nome do container sera o host - porta será o mongo - o nome do bd será o mesmo do .env
+export const client = new MongoClient(
+  "mongodb://mongouser:mongopass@localhost:27017"
+);
 
-    const connectionURL = 'mongodb://mongouser:mongopass@account-database:27017'; 
-    const connection = new MongoClient(connectionURL);
-
-    await connection.connect(); // a connect é uma promise precisa usar o async antes da function e o await.
-
-    const database = connection.db('accounts'); // esse accounts é o bd cadastrado no .env
-    return database.collection('users'); // esse accounts é a coleção criada (trello:card 1 - item 3)
+export async function getUsersCollection() {
+  const database = client.db("accounts");
+  const collection = database.collection("users");
+  return collection;
 }
 
-// realizar o export da função para conseguir usar dentro do databaseConnect
-export async function saveAccount(accounts){
-    const collection = await getUsersCollection();// função criada para acessar a collection dentro do db.
-    await collection.insertOne(accounts); //insertOne é promise = async/await
+export async function saveAccount(accounts) {
+  await client.connect();
+  const collection = await getUsersCollection(client);
+  await collection.insertOne(accounts);
+  setTimeout(() => {
+    client.close();
+  }, 1500);
 }

@@ -1,8 +1,32 @@
-import { createUserUseCase } from "../src/use-case/createUserAccount.js";
+import request from "supertest";
+import { client, getUsersCollection, } from "../repositories/accountRepository.js";
+import { app } from "../src/app.js";
 
-const user1 = createUserUseCase("Natalia Melo", "natalia@email.com", "senhaDaNatalia" );
-const user2 = createUserUseCase("Maria Lima", "maria@email.com", "senhaDaMaria");
-const user3 = createUserUseCase("Jose Carlos", "jose@email.com", "senhaDoJose");
-
-
-console.log("Contas:", user1, user2, user3);
+//teste POST - Account
+describe("Account Creation", () => {
+  afterEach(async () => {
+    const usersCollection = await getUsersCollection(client);
+    await usersCollection.deleteMany({});
+  });
+  it("Should create an user given correct user data", async () => {
+    await request(app)
+      .post("/accounts")
+      .set("Content-Type", "application/json")
+      .set("Accept", "application/json")
+      .send({
+        name: "Natalia",
+        email: "natalia@email.com",
+        password: "senhaDificil",
+      })
+      .expect(201)
+      .expect(({ body }) => {
+        expect(body).toEqual({
+          id: expect.any(String),
+          name: "Natalia",
+          email: "natalia@email.com",
+          createdDate: new Date().toISOString().substring(0, 10),
+        })
+      .end(done)
+      });
+  });
+});
