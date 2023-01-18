@@ -8,7 +8,7 @@ describe("Account Creation", () => {
     const usersCollection = await getUsersCollection(client);
     await usersCollection.deleteMany({});
   });
-  it("Should create an user given correct user data", async () => {
+  it("Should create an account", async () => {
     await request(app)
       .post("/accounts")
       .set("Content-Type", "application/json")
