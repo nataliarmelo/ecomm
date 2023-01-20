@@ -21,9 +21,9 @@ describe("Account Creation", () => {
       .expect(201)
       .expect(({ body }) => {
         expect(body).toEqual({
-          password: expect.any(String),
           name: "Natalia",
           email: "natalia@email.com",
+          password: expect.any(String),
           createdDate: new Date().toISOString().substring(0, 10),
         })
       });
