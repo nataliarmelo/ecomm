@@ -32,8 +32,8 @@ services:
     image: mysql
     container_name: product-database
     environment:
-      - MYSQL_ALLOW_ROOT_PASSWORD=true
-      - MYSQL_RANDOM_ROOT_PASSWORD=false
+      - MYSQL_ALLOW_EMPTY_PASSWORD=true
+      #- MYSQL_RANDOM_ROOT_PASSWORD=false
       - MYSQL_DATABASE=products
       - MYSQL_USER=mysqluser
       - MYSQL_PASSWORD=mysqlpass
