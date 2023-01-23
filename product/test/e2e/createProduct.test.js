@@ -12,7 +12,7 @@ describe("Product Creation", () => {
     await request(app)
       .post("/products")
       .set("Content-Type", "application/json")
-      .set("Accept", "Application/json")
+      .set("Accept", "application/json")
       .send(product)
       .expect(201)
       .expect(({ body }) => {
@@ -21,15 +21,15 @@ describe("Product Creation", () => {
           id: expect.any(Number),
           createdAt: expect.any(String),
           updatedAt: expect.any(String),
-          characteristics: product.characteristics.map((characteristics) => ({
-            ...characteristics,
+          characteristics: product.characteristics.map((characteristic) => ({
+            ...characteristic,
             id: expect.any(Number),
             product_id: body.id,
             createdAt: expect.any(String),
             updatedAt: expect.any(String),
           })),
-          images: product.images.map((images) => ({
-            ...images,
+          images: product.images.map((image) => ({
+            ...image,
             id: expect.any(Number),
             product_id: body.id,
             createdAt: expect.any(String),
