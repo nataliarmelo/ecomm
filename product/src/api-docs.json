@@ -25,6 +25,11 @@
     "/products": {
       "post": {
         "summary": "Product registre",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
         "description": "Responsible for registering a new product.",
         "tags": [
           "Products"
@@ -160,6 +165,13 @@
               "type": "string"
             }
           }
+        }
+      },
+      "securitySchemes": {
+        "bearerAuth": {
+          "type": "http",
+          "scheme": "bearer",
+          "bearerFormat": "JWT"
         }
       }
     }
