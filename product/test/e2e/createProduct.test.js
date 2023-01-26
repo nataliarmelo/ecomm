@@ -1,11 +1,11 @@
 import request from "supertest";
 import { app } from "../../src/app.js";
 import { product } from "../data/products.js";
-import { cleanDatas } from "../helpers/help-product.js";
+import { cleanProductTable } from "../helpers/help-product.js";
 
 describe("Product Creation", () => {
   afterEach(async () => {
-    await cleanDatas();
+    await cleanProductTable();
   });
 
   it("Should create a product", async () => {

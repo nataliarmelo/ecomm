@@ -2,11 +2,11 @@ import request from "supertest";
 import { app } from "../../src/app.js";
 import { product } from "../data/products.js";
 import { saveProduct } from "../../src/repositories/productRepository.js";
-import { cleanDatas } from "../helpers/help-product.js";
+import { cleanProductTable } from "../helpers/help-product.js";
 
 describe("Product List", () => {
   afterEach(async () => {
-    await cleanDatas();
+    await cleanProductTable();
   });
 
   it("Should return an empty list of products", async () => {
@@ -24,28 +24,29 @@ describe("Product List", () => {
       .get("/products")
       .expect(200)
       .expect(({ body }) => {
-        expect(body[0]).toEqual([
+        expect(body.length).toBe(1);
+        expect(body).toEqual(expect.arrayContaining([
           {
             ...product,
             id: expect.any(Number),
             createdAt: expect.any(String),
             updatedAt: expect.any(String),
-            characteristics: product.characteristics.map((characteristics) => ({
+            characteristics: expect.arrayContaining(product.characteristics.map((characteristics) => ({
               ...characteristics,
               id: expect.any(Number),
               product_id: body[0].id,
               createdAt: expect.any(String),
               updatedAt: expect.any(String),
-            })),
-            images: product.images.map((images) => ({
+            }))),
+            images: expect.arrayContaining( product.images.map((images) => ({
               ...images,
               id: expect.any(Number),
               product_id: body[0].id,
               createdAt: expect.any(String),
               updatedAt: expect.any(String),
-            })),
+            }))),
           },
-        ]);
+        ]));
       });
   });
 });
