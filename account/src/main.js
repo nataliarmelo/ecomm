@@ -6,6 +6,6 @@ import { app } from "../src/app.js";
 app.use(cors());
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(apiDocs));
 
-app.listen(3001, () => {
+app.listen(process.env.PORT, () => {
   console.log("Accounts server is running");
 });
