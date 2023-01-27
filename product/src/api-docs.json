@@ -23,14 +23,14 @@
   ],
   "paths": {
     "/products": {
+      "summary": "Product registre",
+      "description": "Responsible for registering a new product.",
       "post": {
-        "summary": "Product registre",
         "security": [
           {
             "bearerAuth": []
           }
         ],
-        "description": "Responsible for registering a new product.",
         "tags": [
           "Products"
         ],
@@ -38,7 +38,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/productData"
+                "$ref": "#/components/schemas/CreateProductRequest"
               }
             }
           }
@@ -50,34 +50,7 @@
               "application/json": {
                 "schema": {
                   "type": "object",
-                  "$ref": "#/components/schemas/productData"
-                },
-                "examples": {
-                  "products": {
-                    "value": {
-                      "productId": "74034ae7-7d52-4644-9433-2e6e3ca1601a",
-                      "createdDate": "2022-12-29",
-                      "product": {
-                        "name": "iPhone 13 Pro Max",
-                        "price": 950,
-                        "quantify": 3,
-                        "description": "Ceramic Shield front.",
-                        "category": "Smartphone",
-                        "characteristics": [
-                          {
-                            "name": "Color",
-                            "description": "Gold"
-                          }
-                        ],
-                        "images": [
-                          {
-                            "url": "http://image.com",
-                            "descricao": "An image of a smartphone in gold color"
-                          }
-                        ]
-                      }
-                    }
-                  }
+                  "$ref": "#/components/schemas/ProductResponse"
                 }
               }
             }
@@ -88,7 +61,41 @@
               "application/json": {
                 "schema": {
                   "type": "object",
-                  "$ref": "#/components/schemas/productData"
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Error creating product",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Error creating product",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    }
+                  }
                 }
               }
             }
@@ -103,7 +110,17 @@
         ],
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ProductResponse"
+                  }
+                }
+              }
+            }
           },
           "500": {
             "description": "Internal Server Error"
@@ -114,17 +131,17 @@
   },
   "components": {
     "schemas": {
-      "productData": {
+      "ProductResponse": {
         "type": "object",
         "properties": {
-          "name": {
+          "id": {
+            "type": "integer"
+          },
+          "userId": {
             "type": "string"
           },
-          "price": {
-            "type": "number"
-          },
-          "quantify": {
-            "type": "integer"
+          "name": {
+            "type": "string"
           },
           "description": {
             "type": "string"
@@ -132,47 +149,132 @@
           "category": {
             "type": "string"
           },
-          "characteristics": {
-            "$ref": "#/components/schemas/characteristcsData"
+          "quantity": {
+            "type": "integer"
+          },
+          "value": {
+            "type": "number"
+          },
+          "createdDate": {
+            "type": "string"
+          },
+          "updatedDate": {
+            "type": "string"
+          },
+          "features": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CharacteristicsResponse"
+            }
           },
           "images": {
-            "$ref": "#/components/schemas/imagesData"
-          }
-        }
-      },
-      "characteristcsData": {
-        "type": "array",
-        "items": {
-          "properties": {
-            "name": {
-              "type": "string"
-            },
-            "description": {
-              "type": "string"
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ImageResponse"
             }
           }
         }
       },
-      "imagesData": {
-        "type": "array",
-        "items": {
-          "type": "object",
-          "properties": {
-            "url": {
-              "type": "string"
-            },
-            "description": {
-              "type": "string"
+      "ImageResponse": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "url": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "createdDate": {
+            "type": "string"
+          },
+          "updatedDate": {
+            "type": "string"
+          }
+        }
+      },
+      "CharacteristicsResponse": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "name": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "createdDate": {
+            "type": "string"
+          },
+          "updatedDate": {
+            "type": "string"
+          }
+        }
+      },
+      "CreateProductRequest": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "category": {
+            "type": "string"
+          },
+          "quantity": {
+            "type": "integer"
+          },
+          "value": {
+            "type": "number"
+          },
+          "features": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CreateCharacteristicsRequest"
+            }
+          },
+          "images": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CreateImageRequest"
             }
           }
         }
       },
-      "securitySchemes": {
-        "bearerAuth": {
-          "type": "http",
-          "scheme": "bearer",
-          "bearerFormat": "JWT"
+      "CreateImageRequest": {
+        "type": "object",
+        "properties": {
+          "url": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          }
         }
+      },
+      "CreateCharacteristicsRequest": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
       }
     }
   }

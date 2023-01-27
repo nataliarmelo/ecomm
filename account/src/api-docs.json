@@ -32,7 +32,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/Accounts"
+                "$ref": "#/components/schemas/CreateAccountRequest"
               }
             }
           }
@@ -44,7 +44,7 @@
               "application/json": {
                 "schema": {
                   "type": "object",
-                  "$ref": "#/components/schemas/Accounts"
+                  "$ref": "#/components/schemas/AccountResponse"
                 }
               }
             }
@@ -107,7 +107,7 @@
   },
   "components": {
     "schemas": {
-      "Accounts": {
+      "CreateAccountRequest": {
         "type": "object",
         "properties": {
           "id": {
@@ -120,6 +120,20 @@
             "type": "string"
           },
           "password": {
+            "type": "string"
+          }
+        }
+      },
+      "AccountResponse": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "email": {
             "type": "string"
           },
           "createdDate": {

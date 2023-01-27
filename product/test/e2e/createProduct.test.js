@@ -2,6 +2,7 @@ import request from "supertest";
 import { app } from "../../src/app.js";
 import { product } from "../data/products.js";
 import { cleanProductTable } from "../helpers/help-product.js";
+import { generateToken } from '../helpers/help-token.js';
 
 describe("Product Creation", () => {
   afterEach(async () => {
@@ -13,12 +14,14 @@ describe("Product Creation", () => {
       .post("/products")
       .set("Content-Type", "application/json")
       .set("Accept", "application/json")
+      .set('Authorization', `Bearer ${generateToken('id-do-usuario')}`)
       .send(product)
       .expect(201)
       .expect(({ body }) => {
         expect(body).toEqual({
           ...product,
           id: expect.any(Number),
+          userId: 'id-do-usuario',
           createdAt: expect.any(String),
           updatedAt: expect.any(String),
           characteristics: product.characteristics.map((characteristic) => ({

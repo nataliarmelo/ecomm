@@ -1,9 +1,5 @@
-// import { createProductUseCase } from '../src/use-case/createProductUseCase.js';
-import { randomUUID } from 'node:crypto';
-
 
 export const product = {
-    userId: randomUUID(),
     name: "iPhone 13 Pro Max",
     price: 950,
     quantify: 3,
