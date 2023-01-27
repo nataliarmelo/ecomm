@@ -1,6 +1,7 @@
 import { Router } from "express";
 import { createUserUseCase } from "./use-case/createUserAccount.js";
 import { createUserTokenUseCase } from "./use-case/createUserToken.js";
+import { existsUserByEmail } from "../repositories/accountRepository.js";
 
 export const routes = new Router();
 
