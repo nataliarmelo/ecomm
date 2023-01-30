@@ -32,7 +32,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/Accounts"
+                "$ref": "#/components/schemas/CreateAccountRequest"
               }
             }
           }
@@ -44,17 +44,7 @@
               "application/json": {
                 "schema": {
                   "type": "object",
-                  "$ref": "#/components/schemas/Accounts"
-                },
-                "examples": {
-                  "accounts": {
-                    "value": {
-                      "id": "6548wff6a-58741fe",
-                      "nome": "João",
-                      "email": "joao@mail.com",
-                      "createdDate": "2022-12-29"
-                    }
-                  }
+                  "$ref": "#/components/schemas/AccountResponse"
                 }
               }
             }
@@ -72,11 +62,52 @@
           }
         }
       }
+    },
+    "/tokens": {
+      "post": {
+        "sumarry": "Create token",
+        "description": "Route for create an user token",
+        "tags": [
+          "Accounts"
+        ],
+        "resquestBody": {
+          "content": {
+            "application/json": {
+              "type": "object",
+              "schema": "#/components/schemas/CreateToken"
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Generated token!",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "$ref": "#/components/schemas/AccountTokenAuth"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Error! Invalid credentials - password or email is incorrect.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "$ref": "#/components/schemas/AccountTokenError"
+                }
+              }
+            }
+          }
+        }
+      }
     }
   },
   "components": {
     "schemas": {
-      "Accounts": {
+      "CreateAccountRequest": {
         "type": "object",
         "properties": {
           "id": {
@@ -89,6 +120,20 @@
             "type": "string"
           },
           "password": {
+            "type": "string"
+          }
+        }
+      },
+      "AccountResponse": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "email": {
             "type": "string"
           },
           "createdDate": {
@@ -103,6 +148,39 @@
             "type": "string"
           },
           "email": {
+            "type": "string"
+          }
+        }
+      },
+      "CreateToken": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string"
+          },
+          "password": {
+            "type": "string"
+          }
+        }
+      },
+      "AccountTokenAuth": {
+        "type": "object",
+        "properties": {
+          "auth": {
+            "type": "string"
+          },
+          "token": {
+            "type": "string"
+          }
+        }
+      },
+      "AccountTokenError": {
+        "type": "object",
+        "properties": {
+          "auth": {
+            "type": "string"
+          },
+          "message": {
             "type": "string"
           }
         }
