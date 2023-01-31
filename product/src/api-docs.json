@@ -164,7 +164,7 @@
           "features": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/CharacteristicsResponse"
+              "$ref": "#/components/schemas/FeatureResponse"
             }
           },
           "images": {
@@ -195,7 +195,7 @@
           }
         }
       },
-      "CharacteristicsResponse": {
+      "FeatureResponse": {
         "type": "object",
         "properties": {
           "id": {
@@ -236,7 +236,7 @@
           "features": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/CreateCharacteristicsRequest"
+              "$ref": "#/components/schemas/CreateFeatureRequest"
             }
           },
           "images": {
@@ -258,7 +258,7 @@
           }
         }
       },
-      "CreateCharacteristicsRequest": {
+      "CreateFeatureRequest": {
         "type": "object",
         "properties": {
           "name": {

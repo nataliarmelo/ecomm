@@ -5,7 +5,7 @@ export const product = {
     quantify: 3,
     description: "Ceramic Shield front. Textured matte glass back and stainless steel design",
     category: "Smartphone",
-    characteristics: [
+    features: [
         {
             name: "Color",
             description: "Gold", 

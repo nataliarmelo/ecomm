@@ -12,12 +12,12 @@ module.exports = {
         key: 'id'
       }    
     }
-    queryInterface.addColumn('Characteristics', 'product_id', columnDefinitions);
+    queryInterface.addColumn('Features', 'product_id', columnDefinitions);
     queryInterface.addColumn('Images', 'product_id', columnDefinitions)
   },
 
   async down (queryInterface, Sequelize) {
-    queryInterface.removeColumn('Characteristics', 'product_id');
+    queryInterface.removeColumn('Features', 'product_id');
     queryInterface.removeColumn('Images', 'product_id');
   }
 };

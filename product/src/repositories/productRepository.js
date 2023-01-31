@@ -1,12 +1,12 @@
-import { Characteristics } from "../../models/characteristics.js";
-import { Images } from "../../models/images.js";
+import { Feature } from "../../models/feature.js";
+import { Image } from "../../models/image.js";
 import { Product } from "../../models/product.js";
 
 export async function saveProduct(product) {
   const createdProduct = await Product.create(product, {
     include: [
-      { association: Product.Characteristics, as: "characteristics" },
-      { association: Product.Images, as: "images" },
+      { association: Product.Feature, as: "features" },
+      { association: Product.Image, as: "images" },
     ],
   });
   await createdProduct.save();
@@ -17,11 +17,11 @@ export async function findProducts() {
   const products = await Product.findAll({
     include: [
       {
-        model: Characteristics,
-        as: "characteristics",
+        model: Feature,
+        as: "features",
       },
       {
-        model: Images,
+        model: Image,
         as: "images",
       },
     ],
