@@ -30,7 +30,7 @@ describe("Product List", () => {
             {
               ...product,
               userId: "id-do-usuario",
-              value: String(product.value),
+              price: String(product.price),
               id: expect.any(Number),
               createdAt: expect.any(String),
               updatedAt: expect.any(String),

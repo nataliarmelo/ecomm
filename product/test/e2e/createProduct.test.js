@@ -21,7 +21,6 @@ describe("Product Creation", () => {
         expect(body).toEqual({
           ...product,
           id: expect.any(Number),
-          userId: "id-do-usuario",
           createdAt: expect.any(String),
           updatedAt: expect.any(String),
           features: product.features.map((feature) => ({
@@ -39,6 +38,41 @@ describe("Product Creation", () => {
             updatedAt: expect.any(String),
           })),
         });
+      });
+  });  
+  it("should not create a product when no authorization info is provided", async () => {
+    await request(app)
+      .post("/products")
+      .set("Content-Type", "application/json")
+      .set("Accept", "application/json")
+      .expect(401)
+      .expect(({ body }) => {
+        expect(body).toEqual({ message: "authentication required" });
+      });
+  });
+
+  it("should not create a product when authorization info is malformed", async () => {
+    await request(app)
+      .post("/products")
+      .set("Content-Type", "application/json")
+      .set("Accept", "application/json")
+      .set("Authorization", "header-errado")
+      .expect(400)
+      .expect(({ body }) => {
+        expect(body).toEqual({ message: "authorization header malformed" });
+      });
+  });
+
+  it("should not create a product when authorization info was modified", async () => {
+    const modifiedToken = generateToken("id-usuario") + "a";
+    await request(app)
+      .post("/products")
+      .set("Content-Type", "application/json")
+      .set("Accept", "application/json")
+      .set("Authorization", `Bearer ${modifiedToken}`)
+      .expect(403)
+      .expect(({ body }) => {
+        expect(body).toEqual({ message: "forbidden" });
       });
   });
 });
