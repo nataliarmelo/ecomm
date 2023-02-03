@@ -1,5 +1,8 @@
 import request from "supertest";
-import { client, getUsersCollection, } from "../repositories/accountRepository.js";
+import {
+  client,
+  getUsersCollection,
+} from "../repositories/accountRepository.js";
 import { app } from "../src/app.js";
 import { createUserUseCase } from "../src/use-case/createUserAccount.js";
 
@@ -17,7 +20,7 @@ describe("Account Creation", () => {
       .send({
         name: "Natalia",
         email: "natalia@email.com",
-        password: "senhaDificil",
+        password: "senha128",
       })
       .expect(201)
       .expect(({ body }) => {
@@ -25,14 +28,13 @@ describe("Account Creation", () => {
           id: expect.any(String),
           name: "Natalia",
           email: "natalia@email.com",
-          password: expect.any(String), // não devolvemos a senha, porém se tirar a senha o teste não passa! - verificar!
           createdDate: new Date().toISOString().substring(0, 10),
         });
       });
   });
 
   it("should not create an user given an already used e-mail", async () => {
-    await createUserUseCase("Natalia", "natalia@email.com", "senhaDificil");
+    await createUserUseCase("Natalia", "natalia@email.com", "senha128");
     await request(app)
       .post("/accounts")
       .set("Content-Type", "application/json")
@@ -40,12 +42,30 @@ describe("Account Creation", () => {
       .send({
         name: "Natalia",
         email: "natalia@email.com",
-        password: "senhaDificil",
+        password: "senha128",
       })
       .expect(400)
       .expect(({ body }) => {
         expect(body).toEqual({
           message: "User already exists",
+        });
+      });
+  });
+
+  it("should not create an user given invalid e-mail", async () => {
+    await request(app)
+      .post("/accounts")
+      .set("Content-Type", "application/json")
+      .set("Accept", "application/json")
+      .send({
+        name: "Natalia",
+        email: "natalia@email.com",
+        password: "senha128",
+      })
+      .expect(400)
+      .expect(({ body }) => {
+        expect(body).toEqual({
+          message: "invalid e-mail, try again!",
         });
       });
   });
