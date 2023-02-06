@@ -1,5 +1,9 @@
 # Projeto Nxt Dev - Level Up 
 
+<p>Durante o treinamento, criamos um projeto chamado Ecomm, que é um ecommerce baseado no Mercado Livre que foi um projeto construído em partes, ou seja, criamos projetos que se conectam e em conjunto, fazem o Ecomm funcionar.</p>
+
+<p>Veja um pouco sobre a nossa jornada durante essas 11 semanas:</p>
+
 <h2>:calendar: Semana 1 </h2>
 
 <p>
@@ -84,5 +88,35 @@
 
 <ol>
 <li>Testando os endpoints das APIs</li>
+</ol>
+</p>
+
+<h2>:calendar: Semana 9 </h2>
+<p>
+:book: Objetivos:
+
+<ol>
+<li>Autenticando o usuário</li>
+<li>Autorizando o usuário</li>
+</ol>
+</p>
+
+<h2>:calendar: Semana 10 </h2>
+<p>
+:book: Objetivos:
+
+<ol>
+<li>Variáveis de ambiente</li>
+<li>Usuários duplicados</li>
+</ol>
+</p>
+
+<h2>:calendar: Semana 11 </h2>
+<p>
+:book: Objetivos:
+
+<ol>
+<li>Validando produtos</li>
+<li>Validando usuários</li>
 </ol>
 </p>

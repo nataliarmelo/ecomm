@@ -1,7 +1,7 @@
 import { Model, DataTypes } from "sequelize";
 import client from "../src/repositories/dbClient.js";
-import { Characteristics } from "./characteristics.js";
-import { Images } from "./images.js";
+import { Feature } from "./feature.js";
+import { Image } from "./image.js";
 
 export class Product extends Model {
   static associate(models) {}
@@ -19,20 +19,20 @@ Product.init(
   { sequelize: client, modelName: "Product" }
 );
 
-Product.Images = Product.hasMany(Images, {
+Product.Image = Product.hasMany(Image, {
   foreignKey: "product_id",
   as: "images",
 });
 
-Product.Characteristics = Product.hasMany(Characteristics, {
+Product.Feature = Product.hasMany(Feature, {
   foreignKey: "product_id",
-  as: "characteristics",
+  as: "features",
 });
 
-Images.belongsTo(Product, {
+Image.belongsTo(Product, {
   foreignKey: "id",
 });
 
-Characteristics.belongsTo(Product, {
+Feature.belongsTo(Product, {
   foreignKey: "id",
 });

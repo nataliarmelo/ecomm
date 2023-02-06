@@ -19,36 +19,42 @@ describe("Product List", () => {
   });
 
   it("Should return a list of products", async () => {
-    await saveProduct({...product, userId: 'id-do-usuario'});
+    await saveProduct({ ...product, userId: "id-do-usuario" });
     await request(app)
       .get("/products")
       .expect(200)
       .expect(({ body }) => {
         expect(body.length).toBe(1);
-        expect(body).toEqual(expect.arrayContaining([
-          {
-            ...product,
-            userId: 'id-do-usuario',
-            value: String(product.value),
-            id: expect.any(Number),
-            createdAt: expect.any(String),
-            updatedAt: expect.any(String),
-            characteristics: expect.arrayContaining(product.characteristics.map((characteristics) => ({
-              ...characteristics,
+        expect(body).toEqual(
+          expect.arrayContaining([
+            {
+              ...product,
+              userId: "id-do-usuario",
+              price: String(product.price),
               id: expect.any(Number),
-              product_id: body[0].id,
               createdAt: expect.any(String),
               updatedAt: expect.any(String),
-            }))),
-            images: expect.arrayContaining( product.images.map((images) => ({
-              ...images,
-              id: expect.any(Number),
-              product_id: body[0].id,
-              createdAt: expect.any(String),
-              updatedAt: expect.any(String),
-            }))),
-          },
-        ]));
+              features: expect.arrayContaining(
+                product.features.map((feature) => ({
+                  ...feature,
+                  id: expect.any(Number),
+                  product_id: body[0].id,
+                  createdAt: expect.any(String),
+                  updatedAt: expect.any(String),
+                }))
+              ),
+              images: expect.arrayContaining(
+                product.images.map((images) => ({
+                  ...images,
+                  id: expect.any(Number),
+                  product_id: body[0].id,
+                  createdAt: expect.any(String),
+                  updatedAt: expect.any(String),
+                }))
+              ),
+            },
+          ])
+        );
       });
   });
 });
